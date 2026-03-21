@@ -7,7 +7,7 @@ Detect **electronic nonverbal cues (eNVCs)** in text-based communication. Implem
 | **Kinesics** | Stage directions (`*hugs*`), facial emoji, body/gesture emoji, emotion-conveying emoji, kaomoji |
 | **Paralinguistics** | Vocalics (`lol`, `ugh`, `sigh`), intensity caps (`AMAZING`), intensity punctuation (`!!!`), elongation (`loooove`), alternating case (`sPoNgEbOb`), ellipsis (`...`) |
 
-Based on: Ahmed et al. (2026). *Reading Between the Lines: How Electronic Nonverbal Cues Shape Emotion Decoding.* ICWSM.
+Based on: Kumar & Jaidka (2026). *Reading Between the Lines: How Electronic Nonverbal Cues Shape Emotion Decoding.* ICWSM.
 
 ## Python
 
@@ -54,7 +54,7 @@ cd python && pip install -e ".[dev]" && pytest
 
 ```r
 # From GitHub (requires devtools):
-devtools::install_github("YOURUSER/envc", subdir = "R")
+devtools::install_github("kokiljaidka/envc", subdir = "R")
 ```
 
 ### Usage
