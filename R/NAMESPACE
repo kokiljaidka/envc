@@ -1,0 +1,7 @@
+export(detect_envc)
+export(detect_envc_counts)
+export(annotate_envc)
+importFrom(stringr, str_detect)
+importFrom(stringr, str_count)
+importFrom(dplyr, mutate)
+importFrom(tibble, tibble)

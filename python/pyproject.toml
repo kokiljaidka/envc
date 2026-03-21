@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "envc"
+version = "0.1.0"
+description = "Detect electronic nonverbal cues (eNVCs) in text — kinesics and paralinguistics for digital communication."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+keywords = ["nlp", "nonverbal", "emoji", "sentiment", "prosody", "cmc", "social-media"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+[project.optional-dependencies]
+pandas = ["pandas>=1.3"]
+dev = ["pytest>=7.0", "pandas>=1.3"]
+
+[project.urls]
+Repository = "https://github.com/YOURUSER/envc"
+
+[tool.setuptools.packages.find]
+where = ["src"]

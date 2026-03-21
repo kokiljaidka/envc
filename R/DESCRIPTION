@@ -1,0 +1,23 @@
+Package: envc
+Title: Detect Electronic Nonverbal Cues in Text
+Version: 0.1.0
+Authors@R: c(
+    person("Saif", "Ahmed", role = c("aut", "cre"),
+           email = "saif@example.com"),
+    person("Kokil", "Jaidka", role = "aut"))
+Description: Detects electronic nonverbal cues (eNVCs) in text-based
+    communication. Implements a taxonomy of kinesic and paralinguistic
+    cues grounded in nonverbal communication theory, including emoji
+    detection, capitalization, elongation, vocalics, and expressive
+    punctuation. Based on Ahmed et al. (2026), ICWSM.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports:
+    stringr (>= 1.4.0),
+    dplyr (>= 1.0.0),
+    tibble (>= 3.0.0)
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
