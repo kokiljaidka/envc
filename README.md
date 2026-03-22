@@ -7,7 +7,15 @@ Detect **electronic nonverbal cues (eNVCs)** in text-based communication. Implem
 | **Kinesics** | Stage directions (`*hugs*`), facial emoji, body/gesture emoji, emotion-conveying emoji, kaomoji |
 | **Paralinguistics** | Vocalics (`lol`, `ugh`, `sigh`), intensity caps (`AMAZING`), intensity punctuation (`!!!`), elongation (`loooove`), alternating case (`sPoNgEbOb`), ellipsis (`...`) |
 
-Based on: Kumar & Jaidka (2026). *Reading Between the Lines: How Electronic Nonverbal Cues Shape Emotion Decoding.* ICWSM.
+From: Kumar & Jaidka (2026). *Reading Between the Lines: How Electronic Nonverbal Cues Shape Emotion Decoding.* ICWSM.
+
+Please cite us!
+@inproceedings{kumarjaidka2026envc,
+  author    = {Taara Kumar and Kokil Jaidka},
+  title     = {Reading Between the Lines: How Electronic Nonverbal Cues Shape Emotion Decoding},
+  booktitle = {Proceedings of the International AAAI Conference on Web and Social Media},
+  year      = {2026}
+}
 
 ## Python
 
@@ -80,24 +88,25 @@ annotate_envc(df)
 devtools::test("R")
 ```
 
-## Taxonomy
+## Taxonomy → Regex → Output Mapping
 
-The detection categories map directly to the eNVC taxonomy in the paper:
+Each detection category maps from nonverbal communication theory to a regex pattern to an output column in the results. This table mirrors Table 1 in the paper.
 
-### Kinesics (textual body language)
-- **Stage directions**: `*hugs*`, `*cries*`, `*facepalm*`
-- **Facial emoji**: 😊 😢 😍 🤔
-- **Body/gesture emoji**: 👍 🤝 👋 🙏
-- **Emotion-conveying emoji**: ❤️ ✨ 🔥 🎉
-- **Kaomoji**: `(^.^)` `(T_T)` `(>_<)`
+| Domain | Subcategory | Regex Pattern | Example Matches | Output Column |
+|---|---|---|---|---|
+| **Kinesics** | Body / Touch | `\*(hug\|wave\|frown\|smile\|clap)\*` | *hug*, *frowns* | `stage_direction` |
+| | Facial / Eye emoji | `[\U0001F600-\U0001F64F]` | 😀 😂 😍 | `emoji_faces` |
+| | Body-part emoji | `[\U0001F400-\U0001F4FF]` | 🙌 👏 💪 | `emoji_body` |
+| | Emotion-conveying emoji | `[\U0001F490-\U0001F9E1]` | ❤️ ✨ 🎉 | `emoji_emotion` |
+| | Kaomoji | `\([^\w\s]{1,3}[._][^\w\s]{1,3}\)` | (^.^) (T_T) | `kaomoji` |
+| **Paralinguistics** | Vocalics | `\b(lol\|yawn\|ugh+\|hmmm+)\b` | lol, yawn, ughhh | `vocalics` |
+| | Volume (caps) | `\b[A-Z]{2,}\b` | THIS, STOP | `intensity_caps` |
+| | Volume (punctuation) | `!!+` or `\?\?+` | !!!, ??? | `intensity_punctuation` |
+| | Pitch (elongation) | `(\w)\1{2,}` | soooo, noooo | `elongation` |
+| | Pitch (alt. case) | `\b([A-Z][a-z]){2,}\b` | HiYa, LoL | `alternating_case` |
+| | Ellipsis | `\.{3,}\|…` | ..., … | `ellipsis` |
 
-### Paralinguistics (digital prosody)
-- **Vocalics**: `lol`, `ugh`, `sigh`, `omg`, `haha`
-- **Intensity (caps)**: `AMAZING`, `YES` (excludes common acronyms like NASA, IT)
-- **Intensity (punctuation)**: `!!`, `???`, `?!?!`
-- **Elongation**: `loooove`, `nooooo`, `sooooo`
-- **Alternating case**: `sPoNgEbOb` style
-- **Ellipsis**: `...`, `…`
+All functions return one boolean (or count) per column. The `any_envc` column is `True` if any category fires.
 
 ## Citation
 
